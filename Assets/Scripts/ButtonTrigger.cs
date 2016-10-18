@@ -16,17 +16,17 @@ public class ButtonTrigger : MonoBehaviour {
 	
 	}
 
-    void onTriggerEnter(Collider col)
+    void onTriggerEnter(Collider other)
     {
         Debug.Log("Someting on button");
 
-        if (!isButtonActivated && (col.gameObject.name == "CharacterPoint" || col.gameObject.name == "box"));
+        if (!isButtonActivated && (other.gameObject.name == "CharacterPoint" || other.gameObject.name == "box"));
         {
             isButtonActivated = true;
         }
     }
 
-    void OnTriggerExit(Collider col)
+    void OnTriggerExit(Collider other)
     {
         if(roomNumber != 1)
         {
