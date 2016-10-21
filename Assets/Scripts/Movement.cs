@@ -17,7 +17,7 @@ public class Movement : MonoBehaviour {
 
     private Vector2 touchpad;
     private float movementSpeed = 4f;
-    private float sensitivityX = 1.2f;
+    private float sensitivityX = 1.1f;
     private Vector3 playerPos;
 
 	// Use this for initialization

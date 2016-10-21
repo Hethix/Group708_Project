@@ -35,12 +35,13 @@ public class DoorController : MonoBehaviour {
 
 
     //Entering the next room
-    void onTriggerEnter(Collider col)
+    void OnTriggerEnter(Collider col)
     {
         if (!enteredNextRoom)
         {
             Debug.Log("HELLO");
             anim.SetBool("CloseDoor", true); //Closing the door
+            anim.SetBool("OpenDoor", false);
             blocker.SetActive(true); //Enabling blocker so they can't go back
             enteredNextRoom = true;
         }
