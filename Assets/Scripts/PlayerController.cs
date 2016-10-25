@@ -2,17 +2,20 @@
 
 public class PlayerController : MonoBehaviour
 {
-          public Camera Camera;
-          private Vector3 m_OriginalCameraPosition;
-          public float[] PosData;
-          bool moving = false;
-          void start()
-          {
-        m_OriginalCameraPosition = Camera.transform.localPosition;
+    public Camera Camera;
+    private Vector3 m_OriginalCameraPosition;
+    public float[] PosData;
+    bool moving = false;
+    int i = 0;
+    int count = 0;
 
+
+
+    void start()
+    {
+        m_OriginalCameraPosition = Camera.transform.localPosition;
     }
-          int i = 0;
-          int count = 0;
+         
     void Update()
     {
         Vector3 newCameraPosition;
