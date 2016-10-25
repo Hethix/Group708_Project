@@ -6,8 +6,9 @@ public class Movement : MonoBehaviour {
 
     //public GameObject player;
 
-    public Camera Camera;
-    public float[] PosData;
+    public bool Headbobbing;
+    public GameObject Camera;
+    private float[] PosData;
 
     private int i = 0;
     private int count = 0;
@@ -41,28 +42,31 @@ public class Movement : MonoBehaviour {
             //Move based on the y input of the touchpad
             if(touchpad.y > 0.2 || touchpad.y < -0.2)
             {
-                for (int i = 0; i < PosData.Length - 1;)
+                if (Headbobbing)
                 {
-                    //Debug.Log("Number: " + count + " Float: " + PosData[count]);
+                    for (int i = 0; i < PosData.Length - 1;)
+                    {
+                        //Debug.Log("Number: " + count + " Float: " + PosData[count]);
 
-                    Camera.transform.position = new Vector3(transform.position.x, transform.position.y + PosData[count] * 10, transform.position.z);
-                    newCameraPosition = Camera.transform.position;
-                    newCameraPosition.y = Camera.transform.position.y;
-                    if (count < 29)
-                    {
-                        count++;
-                    }
-                    else
-                    {
-                        count = 0;
-                    }
-                    if (i >= PosData.Length)
-                    {
-                        i = 0;
-                    }
-                    else
-                    {
-                        i++;
+                        Camera.transform.position = new Vector3(transform.position.x, transform.position.y + PosData[count] * 10, transform.position.z);
+                        newCameraPosition = Camera.transform.position;
+                        newCameraPosition.y = Camera.transform.position.y;
+                        if (count < 29)
+                        {
+                            count++;
+                        }
+                        else
+                        {
+                            count = 0;
+                        }
+                        if (i >= PosData.Length)
+                        {
+                            i = 0;
+                        }
+                        else
+                        {
+                            i++;
+                        }
                     }
                 }
                 transform.position -= transform.forward * Time.deltaTime * (touchpad.y * movementSpeed);
