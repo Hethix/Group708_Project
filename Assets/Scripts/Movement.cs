@@ -22,15 +22,22 @@ public class Movement : MonoBehaviour {
     private Vector3 playerPos;
 
 
-    //Velocity variables
+    //Velocity variables for movement
     private float initialVelocity = 0.0f;
-    private float finalVelocity = 100.0f;
+    private float finalVelocity = 2.5f;
     private float currentVelocity = 0.0f;
-    private float accelerationRate = 10.0f;
+    private float accelerationRate = 5.0f;
     private float decelerationRate = 10.0f;
 
-	// Use this for initialization
-	void Start () {
+    //Variables for rotation velocity
+    private float initialRotationVelocity = 0.0f;
+    private float finalRotationVelocity = 1.0f;
+    private float currentRotationVelocity = 0.0f;
+    private float rotationAccelerationRate = 2.0f;
+    private float rotationDecelerationRate = 10.0f;
+
+    // Use this for initialization
+    void Start () {
 
     }
 
@@ -51,7 +58,7 @@ public class Movement : MonoBehaviour {
             //Move based on the y input of the touchpad
             if(touchpad.y > 0.2 || touchpad.y < -0.2)
             {
-                currentVelocity += (accelerationRate * Time.deltaTime) * touchpad.y;
+                currentVelocity += (accelerationRate * Time.deltaTime);
                 
                 //Headbobbing stuff (Really weird atm)
                 if (Headbobbing)
@@ -77,18 +84,24 @@ public class Movement : MonoBehaviour {
                 }
                 //transform.position -= transform.forward * Time.deltaTime * (touchpad.y * movementSpeed);
             }
-            else
-            {
-                currentVelocity = currentVelocity - (decelerationRate * Time.deltaTime);
-            }
-            currentVelocity = Mathf.Clamp(currentVelocity, initialVelocity, finalVelocity);
-            transform.position -= transform.forward * Time.deltaTime * currentVelocity;
-
+            
+            
+            
             //Rotate based on x input of the touchpad
             if (touchpad.x > 0.3f || touchpad.x < -0.3f)
             {
-                transform.Rotate(0, touchpad.x * sensitivityX, 0);
+                currentRotationVelocity += (rotationAccelerationRate * Time.deltaTime);
             }
         }
-	}
+        else
+        {
+            currentVelocity -= decelerationRate * Time.deltaTime;
+            currentRotationVelocity -= rotationDecelerationRate * Time.deltaTime;
+        }
+        currentVelocity = Mathf.Clamp(currentVelocity, initialVelocity, finalVelocity);
+        transform.position -= transform.forward * Time.deltaTime * currentVelocity * touchpad.y;
+
+        currentRotationVelocity = Mathf.Clamp(currentRotationVelocity, initialRotationVelocity, finalRotationVelocity);
+        transform.Rotate(0,currentRotationVelocity * touchpad.x, 0);
+    }
 }
