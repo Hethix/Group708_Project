@@ -24,10 +24,10 @@ public class PlayerController : MonoBehaviour
 
 
 
-        float x = Input.GetAxis("Horizontal") * Time.deltaTime * 150.0f;
+        float x = Input.GetAxis("Horizontal") * Time.deltaTime * 100.0f;
         if (Input.GetButton("Vertical"))
         {
-            float move = Input.GetAxis("Vertical") * Time.deltaTime * 10.0f;
+            float move = Input.GetAxis("Vertical") * Time.deltaTime * 50.0f;
             moving = true;
             transform.Translate(0, 0, move);
         }

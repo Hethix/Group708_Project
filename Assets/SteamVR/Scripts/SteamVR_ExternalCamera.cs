@@ -14,7 +14,7 @@ public class SteamVR_ExternalCamera : MonoBehaviour
 	{
 		public float x, y, z;
 		public float rx, ry, rz;
-		public float fov;
+        public float fov;
 		public float near, far;
 		public float sceneResolutionScale;
 		public float frameSkip;
