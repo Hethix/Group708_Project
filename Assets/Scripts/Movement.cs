@@ -20,7 +20,7 @@ public class Movement : MonoBehaviour
     private int count = 0;
 
     //Variables used for steam devices
-    SteamVR_Controller.Device device;
+    //SteamVR_Controller.Device device;
     public SteamVR_TrackedObject controller;
     private Vector2 touchpad;
     private Valve.VR.EVRButtonId triggerButton = Valve.VR.EVRButtonId.k_EButton_SteamVR_Trigger;
@@ -57,7 +57,7 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        device = SteamVR_Controller.Input((int)controller.index);
+        //device = SteamVR_Controller.Input((int)controller.index);
         int rightIndex = SteamVR_Controller.GetDeviceIndex(SteamVR_Controller.DeviceRelation.Rightmost);
         int leftIndex = SteamVR_Controller.GetDeviceIndex(SteamVR_Controller.DeviceRelation.Leftmost);
 

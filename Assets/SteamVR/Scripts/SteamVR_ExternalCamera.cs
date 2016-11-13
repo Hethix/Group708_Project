@@ -121,7 +121,7 @@ public class SteamVR_ExternalCamera : MonoBehaviour
 		DestroyImmediate(go.GetComponent<SteamVR_Camera>());
 
 		cam = go.GetComponent<Camera>();
-		cam.fieldOfView = config.fov;
+        cam.fieldOfView = config.fov;
 		cam.useOcclusionCulling = false;
 		cam.enabled = false; // manually rendered
 
