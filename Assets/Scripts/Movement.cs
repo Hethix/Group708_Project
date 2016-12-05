@@ -8,9 +8,6 @@ public class Movement : MonoBehaviour
 
     //Field of view variables
 
-
-
-
     //Headbobbing variables
     public bool Headbobbing;
     public Transform lookingDir;
@@ -68,12 +65,10 @@ public class Movement : MonoBehaviour
 
         if (rightDevice.GetPress(SteamVR_Controller.ButtonMask.Touchpad))
         {
-            Debug.Log("Pressing right controller");
             Moving(rightDevice);
             //  transform.position -= lookingDir.transform.forward * Time.deltaTime * (touchpad.y * 0.5f);
         } else if (leftDevice.GetPress(SteamVR_Controller.ButtonMask.Touchpad))
         {
-            Debug.Log("Pressing left controller");
             Moving(leftDevice);
         }else
         {
@@ -103,19 +98,19 @@ public class Movement : MonoBehaviour
         //Rotation
         if (fixedRotation)
         {
-            if (device.GetPressDown(SteamVR_Controller.ButtonMask.Touchpad) && touchpad.x < -0.4f)
+			if (touchpad.x < -0.6f && device.GetPressDown(SteamVR_Controller.ButtonMask.Touchpad))
             {
-                transform.Rotate(0, -22.5f, 0);
+                transform.Rotate(0, -30.0f, 0);
             }
-            else if (device.GetPressDown(SteamVR_Controller.ButtonMask.Touchpad) && touchpad.x > -0.4f)
+			else if (touchpad.x > 0.6f && device.GetPressDown(SteamVR_Controller.ButtonMask.Touchpad))
             {
-                transform.Rotate(0, 22.5f, 0);
+                transform.Rotate(0, 30.0f, 0);
             }
         }
         else
         {
             //Rotate based on x input of the touchpad
-            if (touchpad.x > 0.4f || touchpad.x < -0.4f)
+            if (touchpad.x > 0.6f || touchpad.x < -0.6f)
             {
                 currentRotationVelocity += (rotationAccelerationRate * Time.deltaTime);
             }
